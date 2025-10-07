@@ -1,22 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import inject from '@rollup/plugin-inject';
 
 export default defineConfig({
   plugins: [react()],
   define: {
-    'process.env': {}
+    global: {},
   },
-  optimizeDeps: {
-    include: ['process'],
-  },
-  build: {
-    rollupOptions: {
-      plugins: [
-        inject({
-          process: 'process/browser',
-        }),
-      ],
+  resolve: {
+    alias: {
+      process: 'process/browser',
     },
   },
 })
