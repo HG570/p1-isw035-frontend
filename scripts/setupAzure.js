@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/*
 import "dotenv/config";
 import { BlobServiceClient } from "@azure/storage-blob";
 import { TableClient } from "@azure/data-tables";
@@ -38,3 +38,4 @@ async function main() {
 }
 
 main();
+*/
