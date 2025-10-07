@@ -1,8 +1,12 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import React, { Suspense } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Veiculos from './pages/Veiculos';
+import Clientes from './pages/Clientes';
+import Locacoes from './pages/Locacoes';
 import AdicionarVeiculo from './pages/AdicionarVeiculo';
 import EditarVeiculo from './pages/EditarVeiculo';
+import Navbar from "./components/Navbar";
 import './App.css'
 
 function App() {
@@ -10,18 +14,18 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <nav>
-          <Link to="/">Home</Link> | <Link to="/about">About</Link>
-        </nav>
-
+      <Navbar />
+      <Suspense fallback={<div className="container py-4">Carregando...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/adicionar-veiculo" element={<AdicionarVeiculo />} />
-          <Route path="/editar-veiculo" element={<EditarVeiculo />} />
           <Route path="/veiculos" element={<Veiculos />} />
-          <Route path="*" element={<Home />} />
+          <Route path="/clientes" element={<Clientes />} />
+          <Route path="/locacoes" element={<Locacoes />} />
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </BrowserRouter>
+      </Suspense>
+    </BrowserRouter>
     </>
   )
 }
